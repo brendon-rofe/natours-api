@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`));
 
 app.get('/api/v1/tours', (req, res) => {
-  res.status(200).json({ tours: tours });
+  res.status(200).json({ success: 'success', data: { tours: tours } });
 });
 
 const port = 3000;
