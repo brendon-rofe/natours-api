@@ -12,7 +12,7 @@ const tours = JSON.parse(
 );
 
 app.get('/api/v1/tours', (req, res) => {
-  res.status(200).json({ success: 'success', data: { tours } });
+  res.status(200).json({ success: 'success', results: tours.length, data: { tours } });
 });
 
 const port = 3000;
