@@ -54,18 +54,19 @@ const updateTour = (req, res) => {
   res.status(200).json({ status: 'success', data: { tour: '<Updated tour here...>' } });
 };
 
-app.get('/api/v1/tours', getAllTours);
-app.get('/api/v1/tours/:id', getTour);
-app.post('/api/v1/tours', createTour);
-app.patch('/api/v1/tours/:id', updateTour);
-
-app.delete('/api/v1/tours/:id', (req, res) => {
+const deleteTour = (req, res) => {
   if(req.params.id * 1 >= tours.length) {
     return res.status(404).json({ status: 'fail', message: 'Invalid ID' });
   };
 
   res.status(204).json({ status: 'success', data: null });
-});
+};
+
+app.get('/api/v1/tours', getAllTours);
+app.get('/api/v1/tours/:id', getTour);
+app.post('/api/v1/tours', createTour);
+app.patch('/api/v1/tours/:id', updateTour);
+app.delete('/api/v1/tours/:id', deleteTour);
 
 const port = 3000;
 app.listen(port, () => {
