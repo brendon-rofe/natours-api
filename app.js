@@ -1,14 +1,9 @@
 const fs = require('fs');
 const express = require('express');
-const { error } = require('console');
 
 const app = express();
 
 app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.status(200).json({ msg: 'Index route' });
-});
 
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
@@ -62,6 +57,9 @@ const deleteTour = (req, res) => {
   res.status(204).json({ status: 'success', data: null });
 };
 
+app.get('/', (req, res) => {
+  res.status(200).json({ msg: 'Index route' });
+});
 app.get('/api/v1/tours', getAllTours);
 app.get('/api/v1/tours/:id', getTour);
 app.post('/api/v1/tours', createTour);
