@@ -18,9 +18,7 @@ const getAllTours = (req, res) => {
   res.status(200).json({ status: 'success', results: tours.length, data: { tours } });
 };
 
-app.get('/api/v1/tours', getAllTours);
-
-app.get('/api/v1/tours/:id', (req, res) => {
+const getTour = (req, res) => {
 
   const id = req.params.id * 1;
 
@@ -30,7 +28,10 @@ app.get('/api/v1/tours/:id', (req, res) => {
 
   const tour = tours.find(t => t.id === id);
   res.status(200).json({ status: 'success', data: { tour: tour } });
-});
+};
+
+app.get('/api/v1/tours', getAllTours);
+app.get('/api/v1/tours/:id', getTour);
 
 app.post('/api/v1/tours', (req, res) => {
   const newId = tours[tours.length - 1].id + 1;
