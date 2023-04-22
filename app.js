@@ -30,10 +30,7 @@ const getTour = (req, res) => {
   res.status(200).json({ status: 'success', data: { tour: tour } });
 };
 
-app.get('/api/v1/tours', getAllTours);
-app.get('/api/v1/tours/:id', getTour);
-
-app.post('/api/v1/tours', (req, res) => {
+const createTour = (req, res) => {
   const newId = tours[tours.length - 1].id + 1;
 
   const newTour = Object.assign({ id: newId }, req.body);
@@ -47,7 +44,11 @@ app.post('/api/v1/tours', (req, res) => {
       }
     });
   });
-});
+};
+
+app.get('/api/v1/tours', getAllTours);
+app.get('/api/v1/tours/:id', getTour);
+app.post('/api/v1/tours', createTour);
 
 app.patch('/api/v1/tours/:id', (req, res) => {
   if(req.params.id * 1 >= tours.length) {
