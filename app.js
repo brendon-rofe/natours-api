@@ -18,6 +18,13 @@ app.get('/api/v1/tours', (req, res) => {
   res.status(200).json({ success: 'success', results: tours.length, data: { tours } });
 });
 
+app.get('/api/v1/tours/:id', (req, res) => {
+
+  const id = req.params.id * 1;
+  const tour = tours.find(t => t.id === id);
+  res.status(200).json({ status: 'success', data: { tour: tour } });
+});
+
 app.post('/api/v1/tours', (req, res) => {
   const newId = tours[tours.length - 1].id + 1;
 
