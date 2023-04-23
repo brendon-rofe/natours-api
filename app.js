@@ -131,10 +131,12 @@ tourRouter
   .patch(updateTour)
   .delete(deleteTour);
 
+const userRouter = express.Router();
 
-app.route('/api/v1/users').get(getAllUsers).post(createUser);
-app
-  .route('/api/v1/users/:id')
+app.use('/api/v1/users', userRouter)
+userRouter.route('/').get(getAllUsers).post(createUser);
+userRouter
+  .route('/:id')
   .get(getUser)
   .patch(updateUser)
   .delete(deleteUser);
